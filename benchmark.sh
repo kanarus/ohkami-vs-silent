@@ -2,9 +2,8 @@
 
 set -Cue
 
-# for directory in ./*/; do
-#     TARGET=$(basename $directory)
-TARGET="ohkami-tokio-thread-per-core"
+for directory in ./*/; do
+    TARGET=$(basename $directory)
     echo "Benchmarking $TARGET..."
     cd $TARGET
     mkdir -p .oha || :
@@ -25,4 +24,4 @@ TARGET="ohkami-tokio-thread-per-core"
     done
     pkill -f "target/release/$TARGET"
     cd ..
-# done
+done
