@@ -1,2 +1,8 @@
+# Rust
 **/target
 **/Cargo.lock
+
+# Crystal
+**/lib
+**/shard.lock
+**/server

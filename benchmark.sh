@@ -7,7 +7,14 @@ for directory in ./*/; do
     echo "Benchmarking $TARGET..."
     cd $TARGET
     mkdir -p .oha || :
-    cargo run --release &
+    if [ -f "Cargo.toml" ]; then
+        cargo run --release &
+    elif [ -f "shard.yml" ]; then
+        crystal run src/server.cr --release &
+    else
+        echo "No Cargo.toml or shard.yml found in $TARGET"
+        exit 1
+    fi
     sleep 30
     for CONCURRENCY in 16 32 64 128 256 512; do
         echo "[concurrency: $CONCURRENCY]"
